@@ -33,3 +33,11 @@ enum ESide : int
     TopYPositiv = 4,
     BottomYNegativ = 5
 }
+
+enum ERoomType : int
+{
+    Hallway = 0,
+    Corner = 1,
+    Room = 2,
+    Staircase = 3
+}

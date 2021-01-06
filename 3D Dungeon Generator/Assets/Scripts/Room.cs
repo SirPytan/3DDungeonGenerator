@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<RoomOpening> m_UnconnectedRoomOpenings = new List<RoomOpening>();
+    private List<RoomOpening> m_ConnectedRoomOpenings = new List<RoomOpening>();
+    
+    private void Awake()
     {
         
+    }
+
+    void SpawnAdjacentRooms()
+    {
+
     }
 
     // Update is called once per frame
