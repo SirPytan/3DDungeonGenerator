@@ -16,6 +16,11 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void DisableSpawnCollider()
+    {
+        m_BoxCollider.enabled = false;
+    }
+    
     public BoxCollider GetBoxCollider()
     {
         return m_BoxCollider;
@@ -32,11 +37,10 @@ public class Room : MonoBehaviour
         m_ConnectedRoomOpenings.Add(roomOpening);
     }
 
-    
-    
-    void SpawnAdjacentRooms()
+    public void SpawnAdjacentRooms()
     {
-
+        //Test setup
+        m_UnconnectedRoomOpenings[0].SpawnAdjacentRoom();
     }
 
     // Update is called once per frame

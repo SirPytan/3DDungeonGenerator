@@ -27,6 +27,7 @@ public class DungeonGenerator : MonoBehaviour
         {
             //Todo: Random Rotation in 90 Degree steps
             GameObject firstGeneratedRoom  = Instantiate(firstRoomPrefab, m_DungeonStartPosition, Quaternion.identity, dungeonParent.transform);
+            Debug.Log("Spawned room: " + firstGeneratedRoom.gameObject.name);
             Room firstRoom = firstGeneratedRoom.GetComponent<Room>();
             m_GeneratedRooms.Add(firstRoom);
             m_Active = true;
@@ -37,13 +38,16 @@ public class DungeonGenerator : MonoBehaviour
             return;
         }
 
-        while (m_Active)
-        {
-            foreach (Room room in m_GeneratedRooms)
-            {
+        //Test setup
+        m_GeneratedRooms[0].SpawnAdjacentRooms();
+        
+        //while (m_Active)
+        //{
+        //    foreach (Room room in m_GeneratedRooms)
+        //    {
                 
-            }
-        }
+        //    }
+        //}
     }
 
     
