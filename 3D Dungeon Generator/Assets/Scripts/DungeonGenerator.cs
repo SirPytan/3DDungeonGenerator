@@ -47,8 +47,8 @@ public class DungeonGenerator : MonoBehaviour
         m_GeneratedRooms.Clear();
 
         //Create first room
-        //GameObject firstRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
-        GameObject firstRoomPrefab = m_RoomPrefabs[3];
+        GameObject firstRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
+        //GameObject firstRoomPrefab = m_RoomPrefabs[3];
         if (firstRoomPrefab != null)
         {
             //Todo: Random Rotation in 90 Degree steps

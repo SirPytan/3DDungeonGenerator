@@ -41,9 +41,6 @@ public class Room : MonoBehaviour
     {
         //Test setup
         m_UnconnectedRoomOpenings[0].SpawnAdjacentRoom(parent);
-        m_UnconnectedRoomOpenings[1].SpawnAdjacentRoom(parent);
-        m_UnconnectedRoomOpenings[2].SpawnAdjacentRoom(parent);
-        m_UnconnectedRoomOpenings[3].SpawnAdjacentRoom(parent);
     }
 
     // Update is called once per frame

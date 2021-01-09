@@ -59,8 +59,8 @@ public class RoomOpening : MonoBehaviour
         while (!fittingRoomFound)
         {
             //Step 1: Get Random room
-            GameObject randomRoomPrefab = m_RoomPrefabs[0];//-----------------------------------------------------change
-            //GameObject randomRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
+            //GameObject randomRoomPrefab = m_RoomPrefabs[0];//-----------------------------------------------------change
+            GameObject randomRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
             Debug.Log("Try to spawn room: " + randomRoomPrefab.gameObject.name);
             Room randomRoom = randomRoomPrefab.GetComponent<Room>();
             BoxCollider roomBoxCollider = randomRoom.GetBoxCollider();
@@ -88,7 +88,7 @@ public class RoomOpening : MonoBehaviour
             DebugExtension.DebugBounds(roomBoxBounds, Color.blue, 30, false);
 
             //Step 7: Check if collider are in the way, to spawn this room
-            bool overlapsWithColliders = Physics.CheckBox(rotatedRoomPivot, roomBoxCollider.bounds.extents, Quaternion.identity, LayerMask.GetMask("RoomBoundingBox"));
+            bool overlapsWithColliders = Physics.CheckBox(rotatedRoomPivot, roomBoxBounds.extents, Quaternion.identity, LayerMask.GetMask("RoomBoundingBox"));
 
             //Step 8: Spawn the room, if no colliders are in the way 
             if (!overlapsWithColliders)
