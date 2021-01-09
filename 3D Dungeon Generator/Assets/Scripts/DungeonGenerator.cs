@@ -51,8 +51,9 @@ public class DungeonGenerator : MonoBehaviour
         //GameObject firstRoomPrefab = m_RoomPrefabs[3];
         if (firstRoomPrefab != null)
         {
-            //Todo: Random Rotation in 90 Degree steps
-            GameObject firstGeneratedRoom = Instantiate(firstRoomPrefab, m_DungeonStartPosition, Quaternion.identity, m_DungeonParent.transform);
+            float angle = 90.0f * Random.Range(0, 4);
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            GameObject firstGeneratedRoom = Instantiate(firstRoomPrefab, m_DungeonStartPosition, rotation, m_DungeonParent.transform);
             Debug.Log("Spawned room: " + firstGeneratedRoom.gameObject.name);
             Room firstRoom = firstGeneratedRoom.GetComponent<Room>();
             m_GeneratedRooms.Add(firstRoom);
