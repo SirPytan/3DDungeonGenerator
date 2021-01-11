@@ -7,21 +7,37 @@ public class DungeonGenerator : MonoBehaviour
     
     [SerializeField] private Vector3 m_DungeonStartPosition = Vector3.zero;
     [SerializeField] private List<GameObject> m_RoomPrefabs = new List<GameObject>();
-
+    [SerializeField] private GameObject m_BlockedEntrancePrefab = null;
+    
     private List<Room> m_GeneratedRooms = new List<Room>();
+    private List<Room> m_NewGeneratedRooms = new List<Room>();
 
     private bool m_Active = false;
 
     private GameObject m_DungeonParent = null;
 
-    public List<GameObject> GetRoomPrefabList()
+    public GameObject GetBlockedEntrancePrefab()
     {
-        return m_RoomPrefabs;
+        return m_BlockedEntrancePrefab;
     }
     
+    public ref List<GameObject> GetRoomPrefabList()
+    {
+        return ref m_RoomPrefabs;
+    }
+
+    public ref List<Room> GetGeneratedRoomsList()
+    {
+        return ref m_GeneratedRooms;
+    }
+
+    public ref List<Room> GetNewGeneratedRoomsList()
+    {
+        return ref m_NewGeneratedRooms;
+    }
+
     public void GenerateDungeon()
     {
-
         //Faster way of deleting all generated objects
         //if (m_DungeonParent != null)
         //{
@@ -45,18 +61,18 @@ public class DungeonGenerator : MonoBehaviour
         }
 
         m_GeneratedRooms.Clear();
+        m_NewGeneratedRooms.Clear();
 
         //Create first room
         GameObject firstRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
-        //GameObject firstRoomPrefab = m_RoomPrefabs[3];
         if (firstRoomPrefab != null)
         {
             float angle = 90.0f * Random.Range(0, 4);
             Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
             GameObject firstGeneratedRoom = Instantiate(firstRoomPrefab, m_DungeonStartPosition, rotation, m_DungeonParent.transform);
-            Debug.Log("Spawned room: " + firstGeneratedRoom.gameObject.name);
+            Debug.Log("Spawned first room: " + firstGeneratedRoom.gameObject.name);
             Room firstRoom = firstGeneratedRoom.GetComponent<Room>();
-            m_GeneratedRooms.Add(firstRoom);
+            m_NewGeneratedRooms.Add(firstRoom);
             m_Active = true;
         }
         else
@@ -65,29 +81,45 @@ public class DungeonGenerator : MonoBehaviour
             return;
         }
 
-        //Test setup
-        m_GeneratedRooms[0].SpawnAdjacentRooms(m_DungeonParent);
-
-        //while (m_Active)
-        //{
-        //    foreach (Room room in m_GeneratedRooms)
-        //    {
-
-        //    }
-        //}
+        StartCoroutine(GenerateRooms());
     }
 
-    
-
-    // Start is called before the first frame update
-    void Start()
+    IEnumerator GenerateRooms()
     {
-        
-    }
+        //Debug.Log("Generator started");
+        while (m_Active)
+        {
+            if (m_NewGeneratedRooms.Count > 0)
+            {
+                if (m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].AreAllOpeningsConnected())
+                {
+                    Debug.Log(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].name + " is fully connected.");
+                    m_GeneratedRooms.Add(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1]);
+                    m_NewGeneratedRooms.RemoveAt(m_NewGeneratedRooms.Count - 1);
+                }
+                else
+                {
+                    Debug.Log("Before: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
+                    yield return StartCoroutine(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].SpawnAdjacentRooms(m_DungeonParent));
+                    Debug.Log("After: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
+                }
+            }
+            else
+            {
+                m_Active = false;
+            }
+                
+            //Version 01: Did not work so well
+            //Room room = m_GeneratedRooms.Find(room => room.AreAllOpeningsConnected() == false);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            //if (room != null)
+            //{
+            //    yield return StartCoroutine(room.SpawnAdjacentRooms(m_DungeonParent));
+            //}
+            //else
+            //{
+            //    m_Active = false;
+            //}
+        }
     }
 }

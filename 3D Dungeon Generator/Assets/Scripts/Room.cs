@@ -5,12 +5,26 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     [SerializeField] private BoxCollider m_BoxCollider = null;
-    [SerializeField] private List<RoomOpening> m_UnconnectedRoomOpenings = new List<RoomOpening>();
-    private List<RoomOpening> m_ConnectedRoomOpenings = new List<RoomOpening>();
+    [SerializeField] private List<RoomOpening> m_RoomOpenings = new List<RoomOpening>();
+
+    public bool AreAllOpeningsConnected()
+    {
+        bool openingsConnected = true;
+        foreach (RoomOpening roomOpening in m_RoomOpenings)
+        {
+            if (!roomOpening.IsConnected())
+            {
+                openingsConnected = false;
+                break;
+            }
+        }
+        
+        return openingsConnected;
+    }
     
     private void Awake()
     {
-        foreach (RoomOpening roomOpening in m_UnconnectedRoomOpenings)
+        foreach (RoomOpening roomOpening in m_RoomOpenings)
         {
             roomOpening.SetRoom(this);
         }
@@ -26,26 +40,45 @@ public class Room : MonoBehaviour
         return m_BoxCollider;
     }
     
-    public List<RoomOpening> GetUnconnectedRoomOpenings()
+    public List<RoomOpening> GetRoomOpenings()
     {
-        return m_UnconnectedRoomOpenings;
+        return m_RoomOpenings;
     }
 
-    public void MoveRoomOpeningToConnected(in RoomOpening roomOpening)
+    public IEnumerator SpawnAdjacentRooms(GameObject parent)
     {
-        m_UnconnectedRoomOpenings.Remove(roomOpening);
-        m_ConnectedRoomOpenings.Add(roomOpening);
-    }
-
-    public void SpawnAdjacentRooms(in GameObject parent)
-    {
-        //Test setup
-        m_UnconnectedRoomOpenings[0].SpawnAdjacentRoom(parent);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        int amountOfRoomOpenings = 0;
         
+        foreach (RoomOpening roomOpening in m_RoomOpenings)
+        {
+            if (!roomOpening.IsConnected())
+            {
+                amountOfRoomOpenings++;
+                //roomOpening.SpawnAdjacentRoom(parent);
+                StartCoroutine(roomOpening.SpawnAdjacentRoomEnumerator(parent));
+            }
+        }
+
+        bool active = true;
+
+        while (active)
+        {
+            int counter = 0;
+            yield return null;
+            //Todo: To reduce the amount of checking and improve performance, I could make a second list with only the ones that still need to be checked instead,
+            foreach (RoomOpening roomOpening in m_RoomOpenings)
+            {
+                if (roomOpening.IsCoroutineDone())
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == amountOfRoomOpenings)
+            {
+                active = false;
+            }
+        }
     }
+
 }

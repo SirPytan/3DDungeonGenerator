@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BoxCollider: {fileID: 7405631058319261187}
-  m_UnconnectedRoomOpenings:
+  m_RoomOpenings:
   - {fileID: 2798311248003191560}
   - {fileID: 7914771192309812306}
   - {fileID: 1682323946580375077}
