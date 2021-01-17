@@ -111,6 +111,8 @@ MonoBehaviour:
   m_BoxCollider: {fileID: 1933197814780127001}
   m_RoomOpenings:
   - {fileID: 687425731785163771}
+  m_RoomType: 0
+  m_EntranceType: 0
 --- !u!1 &1794860058628990104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1229,42 @@ PrefabInstance:
     - target: {fileID: 6071931778572717098, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRooms
+      value: 
+      objectReference: {fileID: 11400000, guid: cabd31daaf40be24db8c735893279543, type: 2}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[1].RoomType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[2].RoomType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[3].RoomType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[0].Probability
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[1].Probability
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[2].Probability
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRoomTypes.Array.data[3].Probability
+      value: 0.125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}

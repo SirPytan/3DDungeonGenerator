@@ -826,7 +826,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &531527403
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,14 +1880,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DungeonStartPosition: {x: 0, y: 60, z: 0}
+  m_FirstRoomType: 1
   m_RoomPrefabs:
-  - {fileID: 1430282521866948880, guid: 7466e827091f9b141bd14a11dd43decc, type: 3}
-  - {fileID: 4723746046574197909, guid: 0a485b4b9ca7c4742abe60e57ee5c21b, type: 3}
-  - {fileID: 3553923840441557697, guid: 8b583ce926ed9af4d88aefd576f070ab, type: 3}
-  - {fileID: 3553923840441557697, guid: 36380c3f0a9422e4aaddbeb29263caab, type: 3}
-  - {fileID: 3553923840441557697, guid: c8fd7b73210bc5c4e906b5a3edaa396b, type: 3}
-  - {fileID: 3553923840441557697, guid: 06ce59b65f8396646b0b55e4bc1e7acd, type: 3}
-  - {fileID: 9144707029031824895, guid: 9c22cfafc4bf4574eb775b8ed06de030, type: 3}
+  - RoomType: 0
+    m_Rooms:
+    - {fileID: 4723746046574197909, guid: 0a485b4b9ca7c4742abe60e57ee5c21b, type: 3}
+    - {fileID: 4723746046574197909, guid: 6566090046dd78442ac2f95d4e27cc77, type: 3}
+    - {fileID: 4723746046574197909, guid: 1adae3a1fc9890b488b1a2358d635eb6, type: 3}
+    - {fileID: 1430282521866948880, guid: 7466e827091f9b141bd14a11dd43decc, type: 3}
+  - RoomType: 1
+    m_Rooms:
+    - {fileID: 3553923840441557697, guid: 06ce59b65f8396646b0b55e4bc1e7acd, type: 3}
+    - {fileID: 3553923840441557697, guid: c8fd7b73210bc5c4e906b5a3edaa396b, type: 3}
+    - {fileID: 4723746046574197909, guid: d94f06432a06b004a96963e602f6a237, type: 3}
+    - {fileID: 3553923840441557697, guid: 36380c3f0a9422e4aaddbeb29263caab, type: 3}
+    - {fileID: 3553923840441557697, guid: 8b583ce926ed9af4d88aefd576f070ab, type: 3}
+  - RoomType: 2
+    m_Rooms:
+    - {fileID: 9144707029031824895, guid: 9c22cfafc4bf4574eb775b8ed06de030, type: 3}
+  - RoomType: 3
+    m_Rooms: []
   m_BlockedEntrancePrefab: {fileID: 1430282521866948880, guid: 0ea815b6ef5dd424aa09de33416fadd0, type: 3}
 --- !u!1001 &1076577969
 PrefabInstance:

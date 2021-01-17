@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+#region RoomGenerator
 enum EOrientation : int
 {
     ZPositiv = 0,
@@ -33,11 +34,41 @@ enum ESide : int
     TopYPositiv = 4,
     BottomYNegativ = 5
 }
+#endregion
 
-enum ERoomType : int
+#region DungeonGenerator
+public enum ERoomType : int
 {
+    None = -1,
     Hallway = 0,
-    Corner = 1,
-    Room = 2,
-    Staircase = 3
+    Room3x3 = 1,
+    Staircase = 2,
+    BigRoom = 3
 }
+
+public enum ERoomEntranceType : int
+{
+    None = -1,
+    End = 0,
+    Straight2Way = 1,
+    Corner2Way = 2,
+    TCross3Way = 3,
+    Cross4Way = 4
+}
+/*
+    HallwayEnd = 0,
+    Hallway2WayStraight = 1,
+    Hallway2WayCorner = 2,
+    Hallway3Way = 3,
+    Hallway4Way = 4,
+    RoomEnd = 5,
+    Room2WayStraight = 6,
+    Room2WayCorner = 7,
+    Room3Way = 7,
+    Room4Way = 8,
+    Staircase2Way = 9,
+    MultilayerRoom = 10,
+    BigRoom = 11,
+ */
+#endregion
+

@@ -6,7 +6,24 @@ public class Room : MonoBehaviour
 {
     [SerializeField] private BoxCollider m_BoxCollider = null;
     [SerializeField] private List<RoomOpening> m_RoomOpenings = new List<RoomOpening>();
+    [SerializeField] private ERoomType m_RoomType = ERoomType.None;
+    [SerializeField] private ERoomEntranceType m_EntranceType = ERoomEntranceType.None;
 
+    public int GetEntranceAmount()
+    {
+        return m_RoomOpenings.Count;
+    }
+
+    public ERoomType GetRoomType()
+    {
+        return m_RoomType;
+    }
+
+    public ERoomEntranceType GetEntranceType()
+    {
+        return m_EntranceType;
+    }
+    
     public bool AreAllOpeningsConnected()
     {
         bool openingsConnected = true;

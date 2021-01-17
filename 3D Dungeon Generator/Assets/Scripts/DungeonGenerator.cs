@@ -6,14 +6,14 @@ public class DungeonGenerator : MonoBehaviour
 {
     
     [SerializeField] private Vector3 m_DungeonStartPosition = Vector3.zero;
-    [SerializeField] private List<GameObject> m_RoomPrefabs = new List<GameObject>();
+    [SerializeField] private ERoomType m_FirstRoomType = ERoomType.Room3x3;
+    [SerializeField] private List<RoomTypeList> m_RoomPrefabs = new List<RoomTypeList>();
     [SerializeField] private GameObject m_BlockedEntrancePrefab = null;
     
     private List<Room> m_GeneratedRooms = new List<Room>();
     private List<Room> m_NewGeneratedRooms = new List<Room>();
 
     private bool m_Active = false;
-
     private GameObject m_DungeonParent = null;
 
     public GameObject GetBlockedEntrancePrefab()
@@ -21,7 +21,7 @@ public class DungeonGenerator : MonoBehaviour
         return m_BlockedEntrancePrefab;
     }
     
-    public ref List<GameObject> GetRoomPrefabList()
+    public ref List<RoomTypeList> GetRoomPrefabList()
     {
         return ref m_RoomPrefabs;
     }
@@ -64,7 +64,8 @@ public class DungeonGenerator : MonoBehaviour
         m_NewGeneratedRooms.Clear();
 
         //Create first room
-        GameObject firstRoomPrefab = m_RoomPrefabs[Random.Range(0, m_RoomPrefabs.Count)];
+        List<GameObject> rooms = m_RoomPrefabs.Find(room => room.RoomType == m_FirstRoomType).m_Rooms;
+        GameObject firstRoomPrefab = rooms[Random.Range(0, rooms.Count)];
         if (firstRoomPrefab != null)
         {
             float angle = 90.0f * Random.Range(0, 4);
@@ -87,39 +88,29 @@ public class DungeonGenerator : MonoBehaviour
     IEnumerator GenerateRooms()
     {
         //Debug.Log("Generator started");
+        int index = 0;
         while (m_Active)
         {
             if (m_NewGeneratedRooms.Count > 0)
             {
-                if (m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].AreAllOpeningsConnected())
+                index = m_NewGeneratedRooms.Count - 1;
+                if (m_NewGeneratedRooms[index].AreAllOpeningsConnected())
                 {
-                    Debug.Log(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].name + " is fully connected.");
-                    m_GeneratedRooms.Add(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1]);
-                    m_NewGeneratedRooms.RemoveAt(m_NewGeneratedRooms.Count - 1);
+                    //Debug.Log(m_NewGeneratedRooms[index].name + " is fully connected.");
+                    m_GeneratedRooms.Add(m_NewGeneratedRooms[index]);
+                    m_NewGeneratedRooms.RemoveAt(index);
                 }
                 else
                 {
-                    Debug.Log("Before: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
-                    yield return StartCoroutine(m_NewGeneratedRooms[m_NewGeneratedRooms.Count - 1].SpawnAdjacentRooms(m_DungeonParent));
-                    Debug.Log("After: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
+                    //Debug.Log("Before: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
+                    yield return StartCoroutine(m_NewGeneratedRooms[index].SpawnAdjacentRooms(m_DungeonParent));
+                    //Debug.Log("After: Amount of new generated rooms: " + m_NewGeneratedRooms.Count);
                 }
             }
             else
             {
                 m_Active = false;
             }
-                
-            //Version 01: Did not work so well
-            //Room room = m_GeneratedRooms.Find(room => room.AreAllOpeningsConnected() == false);
-
-            //if (room != null)
-            //{
-            //    yield return StartCoroutine(room.SpawnAdjacentRooms(m_DungeonParent));
-            //}
-            //else
-            //{
-            //    m_Active = false;
-            //}
         }
     }
 }

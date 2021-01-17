@@ -198,6 +198,8 @@ MonoBehaviour:
   m_RoomOpenings:
   - {fileID: 5103365603259343289}
   - {fileID: 3783332577899135182}
+  m_RoomType: 1
+  m_EntranceType: 2
 --- !u!1 &4625253740497945648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2863,6 +2865,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRooms
+      value: 
+      objectReference: {fileID: 11400000, guid: 901766254543706499c9d597bce4744a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!4 &7653109574622748669 stripped
@@ -2936,6 +2942,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRooms
+      value: 
+      objectReference: {fileID: 11400000, guid: 901766254543706499c9d597bce4744a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!114 &3783332577899135182 stripped
