@@ -71,7 +71,6 @@ public class Room : MonoBehaviour
             if (!roomOpening.IsConnected())
             {
                 amountOfRoomOpenings++;
-                //roomOpening.SpawnAdjacentRoom(parent);
                 StartCoroutine(roomOpening.SpawnAdjacentRoomEnumerator(parent));
             }
         }

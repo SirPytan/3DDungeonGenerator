@@ -111,6 +111,8 @@ MonoBehaviour:
   m_BoxCollider: {fileID: 1933197814780127001}
   m_RoomOpenings:
   - {fileID: 687425731785163771}
+  m_RoomType: -1
+  m_EntranceType: -1
 --- !u!1 &2829833764493726334
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +530,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
+      propertyPath: m_AllowedRooms
+      value: 
+      objectReference: {fileID: 11400000, guid: 424310576e733d24d8235bc892cf82ec, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!4 &2697022212161633727 stripped

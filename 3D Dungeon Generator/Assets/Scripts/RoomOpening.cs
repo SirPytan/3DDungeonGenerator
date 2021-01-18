@@ -177,11 +177,11 @@ public class RoomOpening : MonoBehaviour
             GameObject spawnedRoomPrefab = Instantiate(roomPrefab, rotatedRoomPivot, rotation, parent.transform);
             Debug.Log("Spawned room: " + spawnedRoomPrefab.gameObject.name);
 
-
             m_IsConnected = true;
             yield return null; //Important: It gives the trigger a chance to update and marks the room openings as connected, if the collider is in the triggerbox of another opening
 
             m_DungeonGenerator.GetNewGeneratedRoomsList().Add(spawnedRoomPrefab.GetComponent<Room>());
+            yield return null;
             m_FittingRoomFound = true;
         }
         else

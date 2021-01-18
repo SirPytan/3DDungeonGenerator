@@ -431,7 +431,7 @@ PrefabInstance:
     - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
       propertyPath: m_AllowedRooms
       value: 
-      objectReference: {fileID: 11400000, guid: 901766254543706499c9d597bce4744a, type: 2}
+      objectReference: {fileID: 11400000, guid: cabd31daaf40be24db8c735893279543, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!114 &7914771192309812306 stripped
@@ -2938,7 +2938,7 @@ PrefabInstance:
     - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
       propertyPath: m_AllowedRooms
       value: 
-      objectReference: {fileID: 11400000, guid: 901766254543706499c9d597bce4744a, type: 2}
+      objectReference: {fileID: 11400000, guid: cabd31daaf40be24db8c735893279543, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!114 &2798311248003191560 stripped
@@ -3275,7 +3275,7 @@ PrefabInstance:
     - target: {fileID: 8693161889951412846, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
       propertyPath: m_AllowedRooms
       value: 
-      objectReference: {fileID: 11400000, guid: 901766254543706499c9d597bce4744a, type: 2}
+      objectReference: {fileID: 11400000, guid: cabd31daaf40be24db8c735893279543, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90c655a7503f5094abcfacca719f64ed, type: 3}
 --- !u!114 &1682323946580375077 stripped
